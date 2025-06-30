@@ -1,0 +1,220 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-24">Contacto</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">Contacto</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+
+
+       
+    </div>
+    <!-- end page title -->
+    <!-- Form -->
+    <div class="row">
+        <form class="form-edit" action="{{route('contact.update', [contacts.id])}}?_method=PATCH" method="POST" enctype="multipart/form-data">
+            {{ csrfField()}}
+
+        @if(flashMessages.has('success'))
+            <div class="successmessage">
+                <p>{{ flashMessages.get('success') }}</p>
+            </div>
+        @end
+        <div class="col-12">
+            <h4 class="mb-sm-0 font-size-18">Formulario</h4>
+            <div class="card"  style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="title" class="form-label">Título (Esp)</label>
+                                        <input class="form-control" type="text" id="title" name="title" value="{{ contacts.title }}">
+                                        @if(flashMessages.has('errors.title'))
+                                            <div class="errormessage">
+                                                <p>El título no puede estar vacío</p>
+                                            </div>
+                                        @end
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="title_eng" class="form-label">Title (Eng)</label>
+                                        <input class="form-control" type="text" id="title_eng" name="title_eng" value="{{ contacts.title_eng }}">
+                                        @if(flashMessages.has('errors.title_eng'))
+                                            <div class="errormessage">
+                                                <p>El título no puede estar vacío</p>
+                                            </div>
+                                        @end
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Info</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="mb-3">
+                                    <label for="telephone" class="form-label">Teléfono / Phone</label>
+                                    <input class="form-control" type="text" id="telephone" name="telephone" value="{{ contacts.telephone }}">
+                                    @if(flashMessages.has('errors.telephone'))
+                                        <div class="errormessage">
+                                            <p>El título no puede estar vacío</p>
+                                        </div>
+                                    @end
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input class="form-control" type="text" id="email" name="email" value="{{ contacts.email }}">
+                                    @if(flashMessages.has('errors.email'))
+                                        <div class="errormessage">
+                                            <p>El título no puede estar vacío</p>
+                                        </div>
+                                    @end
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Dirección / Address</label>
+                                    <textarea name="address">{{ contacts.address }}</textarea>
+
+                                    @if(flashMessages.has('errors.address'))
+                                        <div class="errormessage">
+                                            <p>El contenido no puede estar vacío</p>
+                                        </div>
+                                    @end
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="time" class="form-label">Horarios</label>
+                                            <input class="form-control" type="text" id="time" name="time" value="{{ contacts.time }}">
+                                            @if(flashMessages.has('errors.time'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="time_eng" class="form-label">Business Hours</label>
+                                            <input class="form-control" type="text" id="time_eng" name="time_eng" value="{{ contacts.time_eng }}">
+                                            @if(flashMessages.has('errors.time_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Redes / Socials</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="mb-3">
+                                    <label for="instagram" class="form-label">Instagram</label>
+                                    <input class="form-control" type="text" id="instagram" name="instagram" value="{{contacts.instagram}}">
+                                    @if(flashMessages.has('errors.instagram'))
+                                        <div class="errormessage">
+                                            <p>Los valores no puede estar vacíos</p>
+                                        </div>
+                                    @end
+                                </div>
+                                <div class="mb-3">
+                                    <label for="facebook" class="form-label">Facebook</label>
+                                    <input class="form-control" type="text" id="facebook" name="facebook" value="{{contacts.facebook}}">
+                                    @if(flashMessages.has('errors.facebook'))
+                                        <div class="errormessage">
+                                            <p>Los valores no puede estar vacíos</p>
+                                        </div>
+                                    @end
+                                </div>
+                                <div class="mb-3">
+                                    <label for="linkedin" class="form-label">Linked In</label>
+                                    <input class="form-control" type="text" id="linkedin" name="linkedin" value="{{contacts.linkedin}}">
+                                    @if(flashMessages.has('errors.linkedin'))
+                                        <div class="errormessage">
+                                            <p>Los valores no puede estar vacíos</p>
+                                        </div>
+                                    @end
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Mapa / Map</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="mb-3">
+                                    <label for="latitude" class="form-label">Latitud</label>
+                                    <input class="form-control" type="text" id="latitude" name="latitude" value="{{contacts.latitude}}">
+                                    @if(flashMessages.has('errors.latitude'))
+                                        <div class="errormessage">
+                                            <p>Los valores no puede estar vacíos</p>
+                                        </div>
+                                    @end
+                                </div>
+                                <div class="mb-3">
+                                    <label for="longitude" class="form-label">Longitud</label>
+                                    <input class="form-control" type="text" id="longitude" name="longitude" value="{{contacts.longitude}}">
+                                    @if(flashMessages.has('errors.longitude'))
+                                        <div class="errormessage">
+                                            <p>Los valores no puede estar vacíos</p>
+                                        </div>
+                                    @end
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div>
+                    <div class="mb-3">
+                        <input class="form-control" type="submit">
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+        </form>
+    </div>
+    <!-- End Form -->
+
+</div>
+
+
+<!-- container-fluid -->
+@endsection

@@ -1,0 +1,2119 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-24">Brandbook</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">Brandbook</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+
+
+       
+    </div>
+    <!-- end page title -->
+
+    <!-- Form -->
+    <div class="row">
+        <form class="form-edit" action="{{route('brandbook.update', [brandbooks.id])}}?_method=PATCH" method="POST" enctype="multipart/form-data">
+            {{ csrfField()}}
+
+        @if(flashMessages.has('success'))
+            <div class="successmessage">
+                <p>{{ flashMessages.get('success') }}</p>
+            </div>
+        @end
+        <div class="col-12">
+            <h4 class="mb-sm-0 font-size-18">Quienes somos</h4>
+            <div class="card"  style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="title" class="form-label">Título (Esp)</label>
+                                            <input class="form-control" type="text" id="title" name="title" value="{{ brandbooks.title }}">
+                                            @if(flashMessages.has('errors.title'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="title_eng" class="form-label">Títle (Eng)</label>
+                                            <input class="form-control" type="text" id="title_eng" name="title_eng" value="{{ brandbooks.title_eng }}">
+                                            @if(flashMessages.has('errors.title_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="desc" class="form-label">Descripción (Esp)</label>
+                                            <textarea name="desc">{{ brandbooks.desc }}</textarea>
+        
+                                            @if(flashMessages.has('errors.desc'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="desc_eng" class="form-label">Description (Eng)</label>
+                                            <textarea name="desc_eng">{{ brandbooks.desc_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.desc_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="about" class="form-label">Subtítulo (Esp)</label>
+                                            <input class="form-control" type="text" id="about" name="about" value="{{ brandbooks.about }}">
+                                            @if(flashMessages.has('errors.about'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="about_eng" class="form-label">Subtítulo (Eng)</label>
+                                            <input class="form-control" type="text" id="about_eng" name="about_eng" value="{{ brandbooks.about_eng }}">
+                                            @if(flashMessages.has('errors.about_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="about_desc" class="form-label">Descripción (esp)</label>
+                                            <textarea name="about_desc">{{ brandbooks.about_desc }}</textarea>
+        
+                                            @if(flashMessages.has('errors.about_desc'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="about_desc_eng" class="form-label">Description (Eng)</label>
+                                            <textarea name="about_desc_eng">{{ brandbooks.about_desc_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.about_desc_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="about_img" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="about_img" name="about_img">
+                                    @if(flashMessages.has('errors.about_img'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="mision" class="form-label">Subtitulo: Mision (Esp)</label>
+                                            <input class="form-control" type="text" id="mision" name="mision" value="{{ brandbooks.mision }}">
+                                            @if(flashMessages.has('errors.mision'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="mision_eng" class="form-label">Subtitle: Mision (Eng)</label>
+                                            <input class="form-control" type="text" id="mision_eng" name="mision_eng" value="{{ brandbooks.mision_eng }}">
+                                            @if(flashMessages.has('errors.mision_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="mision_txt" class="form-label">Contenido: Mision (Esp)</label>
+                                            <textarea name="mision_txt">{{ brandbooks.mision_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.mision_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="mision_txt_eng" class="form-label">Content (Mision)</label>
+                                            <textarea name="mision_txt_eng">{{ brandbooks.mision_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.mision_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="vision" class="form-label">Subtitulo: Vision (Esp)</label>
+                                            <input class="form-control" type="text" id="vision" name="vision" value="{{ brandbooks.vision }}">
+                                            @if(flashMessages.has('errors.vision'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="vision_eng" class="form-label">Subtitulo: Vision (Eng)</label>
+                                            <input class="form-control" type="text" id="vision_eng" name="vision_eng" value="{{ brandbooks.vision_eng }}">
+                                            @if(flashMessages.has('errors.vision_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="vision_txt" class="form-label">Contenido: Vision (Esp)</label>
+                                            <textarea name="vision_txt">{{ brandbooks.vision_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.vision_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="vision_txt_eng" class="form-label">Content: Vision (Eng)</label>
+                                            <textarea name="vision_txt_eng">{{ brandbooks.vision_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.vision_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="valores" class="form-label">Valores (Esp)</label>
+                                            <input class="form-control" type="text" id="valores" name="valores" value="{{ brandbooks.valores }}">
+                                            @if(flashMessages.has('errors.valores'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="valores_eng" class="form-label">Values (Eng)</label>
+                                            <input class="form-control" type="text" id="valores_eng" name="valores_eng" value="{{ brandbooks.valores_eng }}">
+                                            @if(flashMessages.has('errors.valores_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="valores_img" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="valores_img" name="valores_img">
+                                    @if(flashMessages.has('errors.valores_img'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="slogan" class="form-label">Slogan (Esp)</label>
+                                            <input class="form-control" type="text" id="slogan" name="slogan" value="{{ brandbooks.slogan }}">
+                                            @if(flashMessages.has('errors.slogan'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="slogan_eng" class="form-label">Slogan (Eng)</label>
+                                            <input class="form-control" type="text" id="slogan_eng" name="slogan_eng" value="{{ brandbooks.slogan_eng }}">
+                                            @if(flashMessages.has('errors.slogan_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="slogan_txt" class="form-label">Slogan texto (Esp)</label>
+                                            <input class="form-control" type="text" id="slogan_txt" name="slogan_txt" value="{{ brandbooks.slogan_txt }}">
+        
+                                            @if(flashMessages.has('errors.slogan_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="slogan_txt_eng" class="form-label">Slogan texto (Eng)</label>
+                                            <input class="form-control" type="text" id="slogan_txt_eng" name="slogan_txt_eng" value="{{ brandbooks.slogan_txt_eng }}">
+        
+                                            @if(flashMessages.has('errors.slogan_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Concepto e insipiración</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_title" class="form-label">Titulo (esp)</label>
+                                            <input class="form-control" type="text" id="branding_title" name="branding_title" value="{{ brandbooks.branding_title }}">
+                                            @if(flashMessages.has('errors.branding_title'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>        
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_title_eng" class="form-label">Titulo (Eng)</label>
+                                            <input class="form-control" type="text" id="branding_title_eng" name="branding_title_eng" value="{{ brandbooks.branding_title_eng }}">
+                                            @if(flashMessages.has('errors.branding_title_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_subtitle" class="form-label">Subtitulo (Esp)</label>
+                                            <input class="form-control" type="text" id="branding_subtitle" name="branding_subtitle" value="{{ brandbooks.branding_subtitle }}">
+                                            @if(flashMessages.has('errors.branding_subtitle'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_subtitle_eng" class="form-label">Subtitle (Eng)</label>
+                                            <input class="form-control" type="text" id="branding_subtitle_eng" name="branding_subtitle_eng" value="{{ brandbooks.branding_subtitle_eng }}">
+                                            @if(flashMessages.has('errors.branding_subtitle_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_text" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="branding_text">{{ brandbooks.branding_text }}</textarea>
+        
+                                            @if(flashMessages.has('errors.branding_text'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_text_eng" class="form-label">Contenido (Eng)</label>
+                                            <textarea name="branding_text_eng">{{ brandbooks.branding_text_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.branding_text_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="branding_img" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="branding_img" name="branding_img">
+                                    @if(flashMessages.has('errors.branding_img'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_text_2" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="branding_text_2">{{ brandbooks.branding_text_2 }}</textarea>
+                                            @if(flashMessages.has('errors.branding_text_2'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_text_2_eng" class="form-label">Contenido (Eng)</label>
+                                            <textarea name="branding_text_2_eng">{{ brandbooks.branding_text_2_eng }}</textarea>
+                                            @if(flashMessages.has('errors.branding_text_2_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_subtitle_3" class="form-label">Subtitulo (Esp)</label>
+                                            <input class="form-control" type="text" id="branding_subtitle_3" name="branding_subtitle_3" value="{{ brandbooks.branding_subtitle_3 }}">
+                                            @if(flashMessages.has('errors.branding_subtitle_3'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_subtitle_3_eng" class="form-label">Subtitle (Eng)</label>
+                                            <input class="form-control" type="text" id="branding_subtitle_3_eng" name="branding_subtitle_3_eng" value="{{ brandbooks.branding_subtitle_3_eng }}">
+                                            @if(flashMessages.has('errors.branding_subtitle_3_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_text_3" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="branding_text_3">{{ brandbooks.branding_text_3 }}</textarea>
+        
+                                            @if(flashMessages.has('errors.branding_text_3'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="branding_text_3_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="branding_text_3_eng">{{ brandbooks.branding_text_3_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.branding_text_3_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_title" class="form-label">Subtitulo (Esp)</label>
+                                            <input class="form-control" type="text" id="lnf_title" name="lnf_title" value="{{ brandbooks.lnf_title }}">
+                                            @if(flashMessages.has('errors.lnf_title'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_title_eng" class="form-label">Subtitle (Eng)</label>
+                                            <input class="form-control" type="text" id="lnf_title_eng" name="lnf_title_eng" value="{{ brandbooks.lnf_title_eng }}">
+                                            @if(flashMessages.has('errors.lnf_title_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_img" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_img" name="lnf_img">
+                                            @if(flashMessages.has('errors.lnf_img'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_img_eng" class="form-label">Imagen (Eng)</label>
+                                            <input class="form-control" type="file" id="lnf_img_eng" name="lnf_img_eng">
+                                            @if(flashMessages.has('errors.lnf_img_eng'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">El logotipo</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_logo" class="form-label">Titulo (Esp)</label>
+                                            <input class="form-control" type="text" id="lnf_logo" name="lnf_logo" value="{{brandbooks.lnf_logo}}">
+                                            @if(flashMessages.has('errors.lnf_logo'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_logo_eng" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="lnf_logo_eng" name="lnf_logo_eng" value="{{brandbooks.lnf_logo_eng}}">
+                                            @if(flashMessages.has('errors.lnf_logo_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_logo_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="lnf_logo_txt">{{ brandbooks.lnf_logo_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_logo_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_logo_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="lnf_logo_txt_eng">{{ brandbooks.lnf_logo_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_logo_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="lnf_logo_img" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="lnf_logo_img" name="lnf_logo_img">
+                                    @if(flashMessages.has('errors.lnf_logo_img'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_simbolo" class="form-label">Subtitulo (Esp)</label>
+                                            <input class="form-control" type="text" id="lnf_simbolo" name="lnf_simbolo" value="{{brandbooks.lnf_simbolo}}">
+                                            @if(flashMessages.has('errors.lnf_simbolo'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_simbolo_eng" class="form-label">Subtitulo (Eng)</label>
+                                            <input class="form-control" type="text" id="lnf_simbolo_eng" name="lnf_simbolo_eng" value="{{brandbooks.lnf_simbolo_eng}}">
+                                            @if(flashMessages.has('errors.lnf_simbolo_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_simbolo_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="lnf_simbolo_txt">{{ brandbooks.lnf_simbolo_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_simbolo_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_simbolo_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="lnf_simbolo_txt_eng">{{ brandbooks.lnf_simbolo_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_simbolo_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="lnf_simbolo_img" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="lnf_simbolo_img" name="lnf_simbolo_img">
+                                    @if(flashMessages.has('errors.lnf_simbolo_img'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_reticula" class="form-label">Subtitulo (Esp)</label>
+                                            <input class="form-control" type="text" id="lnf_reticula" name="lnf_reticula" value="{{brandbooks.lnf_reticula}}">
+                                            @if(flashMessages.has('errors.lnf_reticula'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_reticula_eng" class="form-label">Subtitle (Eng)</label>
+                                            <input class="form-control" type="text" id="lnf_reticula_eng" name="lnf_reticula_eng" value="{{brandbooks.lnf_reticula_eng}}">
+                                            @if(flashMessages.has('errors.lnf_reticula_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_reticula_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="lnf_reticula_txt">{{ brandbooks.lnf_simbolo_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_reticula_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_reticula_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="lnf_reticula_txt_eng">{{ brandbooks.lnf_simbolo_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_reticula_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="lnf_reticula_img" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="lnf_reticula_img" name="lnf_reticula_img">
+                                    @if(flashMessages.has('errors.lnf_reticula_img'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_proteccion" class="form-label">Subtitulo (Esp)</label>
+                                            <input class="form-control" type="text" id="lnf_proteccion" name="lnf_proteccion" value="{{brandbooks.lnf_proteccion}}">
+                                            @if(flashMessages.has('errors.lnf_proteccion'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_proteccion_eng" class="form-label">Subtitulo (Eng)</label>
+                                            <input class="form-control" type="text" id="lnf_proteccion_eng" name="lnf_proteccion_eng" value="{{brandbooks.lnf_proteccion_eng}}">
+                                            @if(flashMessages.has('errors.lnf_proteccion_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_proteccion_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="lnf_proteccion_txt">{{ brandbooks.lnf_proteccion_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_proteccion_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_proteccion_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="lnf_proteccion_txt_eng">{{ brandbooks.lnf_proteccion_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_proteccion_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="lnf_proteccion_img" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="lnf_protecciona_img" name="lnf_proteccion_img">
+                                    @if(flashMessages.has('errors.lnf_proteccion_img'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_minimos" class="form-label">Subtitulo (Esp)</label>
+                                            <input class="form-control" type="text" id="lnf_minimos" name="lnf_minimos" value="{{brandbooks.lnf_minimos}}">
+                                            @if(flashMessages.has('errors.lnf_minimos'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_minimos_eng" class="form-label">Subtitle (Eng)</label>
+                                            <input class="form-control" type="text" id="lnf_minimos_eng" name="lnf_minimos_eng" value="{{brandbooks.lnf_minimos_eng}}">
+                                            @if(flashMessages.has('errors.lnf_minimos_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_minimos_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="lnf_minimosn_txt">{{ brandbooks.lnf_minimos_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_minimos_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_minimos_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="lnf_minimosn_txt_eng">{{ brandbooks.lnf_minimos_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_minimos_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_minimos_img" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_minimos_img" name="lnf_minimos_img">
+                                            @if(flashMessages.has('errors.lnf_minimos_img'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_minimos_img_eng" class="form-label">Imagen (Eng)</label>
+                                            <input class="form-control" type="file" id="lnf_minimos_img_eng" name="lnf_minimos_img_eng">
+                                            @if(flashMessages.has('errors.lnf_minimos_img_eng'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <h4 class="mb-sm-0 font-size-18">Usos incorrectos</h4>
+            <div class="card"  style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos" class="form-label">Titulo (Esp)</label>
+                                            <input class="form-control" type="text" id="lnf_incorrectos" name="lnf_incorrectos" value="{{ brandbooks.lnf_incorrectos }}">
+                                            @if(flashMessages.has('errors.lnf_incorrectos'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_eng" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="lnf_incorrectos_eng" name="lnf_incorrectos_eng" value="{{ brandbooks.lnf_incorrectos_eng }}">
+                                            @if(flashMessages.has('errors.lnf_incorrectos_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="lnf_incorrectos_txt">{{ brandbooks.lnf_incorrectos_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_incorrectos_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="lnf_incorrectos_txt_eng">{{ brandbooks.lnf_incorrectos_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.lnf_incorrectos_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                    
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3">Uso incorrecto 1</h4>
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_img_a" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_incorrectos_img_a" name="lnf_incorrectos_img_a">
+                                            @if(flashMessages.has('errors.lnf_incorrectos_img_a'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_a" class="form-label">Contenido (Esp)</label>
+                                                    <textarea name="lnf_incorrectos_desc_a">{{ brandbooks.lnf_incorrectos_desc_a }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_a'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_a_eng" class="form-label">Content (Eng)</label>
+                                                    <textarea name="lnf_incorrectos_desc_a_eng">{{ brandbooks.lnf_incorrectos_desc_a_eng }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_a_eng'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3">Uso incorrecto 2</h4>
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_img_b" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_incorrectos_img_b" name="lnf_incorrectos_img_b">
+                                            @if(flashMessages.has('errors.lnf_incorrectos_img_b'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_b" class="form-label">Contenido (Esp)</label>
+                                                    <textarea name="lnf_incorrectos_desc_b">{{ brandbooks.lnf_incorrectos_desc_b }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_b'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_b_eng" class="form-label">Content (Eng)</label>
+                                                    <textarea name="lnf_incorrectos_desc_b_eng">{{ brandbooks.lnf_incorrectos_desc_b_eng }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_b_eng'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3">Uso incorrecto 3</h4>
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_img_c" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_incorrectos_img_c" name="lnf_incorrectos_img_c">
+                                            @if(flashMessages.has('errors.lnf_incorrectos_img_c'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_c" class="form-label">Contenido (Esp)</label>
+                                                    <textarea name="lnf_incorrectos_desc_c">{{ brandbooks.lnf_incorrectos_desc_c }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_c'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_c_eng" class="form-label">Content (Eng)</label>
+                                                    <textarea name="lnf_incorrectos_desc_c_eng">{{ brandbooks.lnf_incorrectos_desc_c_eng }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_c_eng'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3">Uso incorrecto 4</h4>
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_img_d" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_incorrectos_img_d" name="lnf_incorrectos_img_d">
+                                            @if(flashMessages.has('errors.lnf_incorrectos_img_d'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_d" class="form-label">Contenido (Esp)</label>
+                                                    <textarea name="lnf_incorrectos_desc_d">{{ brandbooks.lnf_incorrectos_desc_d }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_d'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_d_eng" class="form-label">Content (Eng)</label>
+                                                    <textarea name="lnf_incorrectos_desc_d_eng">{{ brandbooks.lnf_incorrectos_desc_d_eng }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_d_eng'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3">Uso incorrecto 5</h4>
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_img_e" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_incorrectos_img_e" name="lnf_incorrectos_img_e">
+                                            @if(flashMessages.has('errors.lnf_incorrectos_img_e'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+
+                                       <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_e" class="form-label">Contenido (Esp)</label>
+                                                    <textarea name="lnf_incorrectos_desc_e">{{ brandbooks.lnf_incorrectos_desc_e }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_e'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_e_eng" class="form-label">Content (Eng)</label>
+                                                    <textarea name="lnf_incorrectos_desc_e_eng">{{ brandbooks.lnf_incorrectos_desc_e_eng }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_e_eng'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+                                       </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3">Uso incorrecto 6</h4>
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_img_f" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_incorrectos_img_f" name="lnf_incorrectos_img_f">
+                                            @if(flashMessages.has('errors.lnf_incorrectos_img_f'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_f" class="form-label">Contenido (Esp)</label>
+                                                    <textarea name="lnf_incorrectos_desc_f">{{ brandbooks.lnf_incorrectos_desc_f }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_f'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_f_eng" class="form-label">Contenido (Eng)</label>
+                                                    <textarea name="lnf_incorrectos_desc_f_eng">{{ brandbooks.lnf_incorrectos_desc_f_eng }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_f_eng'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3">Uso incorrecto 7</h4>
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_img_g" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_incorrectos_img_g" name="lnf_incorrectos_img_g">
+                                            @if(flashMessages.has('errors.lnf_incorrectos_img_g'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_g" class="form-label">Contenido (Esp)</label>
+                                                    <textarea name="lnf_incorrectos_desc_g">{{ brandbooks.lnf_incorrectos_desc_g }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_g'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_g_eng" class="form-label">Contenido (Eng)</label>
+                                                    <textarea name="lnf_incorrectos_desc_g_eng">{{ brandbooks.lnf_incorrectos_desc_g_eng }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_g_eng'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3">Uso incorrecto 8</h4>
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_img_h" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_incorrectos_img_h" name="lnf_incorrectos_img_h">
+                                            @if(flashMessages.has('errors.lnf_incorrectos_img_h'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_h" class="form-label">Contenido (Esp)</label>
+                                                    <textarea name="lnf_incorrectos_desc_h">{{ brandbooks.lnf_incorrectos_desc_h }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_h'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_h_eng" class="form-label">Content (Eng)</label>
+                                                    <textarea name="lnf_incorrectos_desc_h_eng">{{ brandbooks.lnf_incorrectos_desc_h_eng }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_h_eng'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3">Uso incorrecto 9</h4>
+                                        <div class="mb-3">
+                                            <label for="lnf_incorrectos_img_i" class="form-label">Imagen</label>
+                                            <input class="form-control" type="file" id="lnf_incorrectos_img_i" name="lnf_incorrectos_img_i">
+                                            @if(flashMessages.has('errors.lnf_incorrectos_img_i'))
+                                                <div class="errormessage">
+                                                    <p>Necesita una imagen</p>
+                                                </div>
+                                            @end
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_i" class="form-label">Contenido (Esp)</label>
+                                                    <textarea name="lnf_incorrectos_desc_i">{{ brandbooks.lnf_incorrectos_desc_i }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_i'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label for="lnf_incorrectos_desc_i_eng" class="form-label">Content (Eng)</label>
+                                                    <textarea name="lnf_incorrectos_desc_i_eng">{{ brandbooks.lnf_incorrectos_desc_i_eng }}</textarea>
+                
+                                                    @if(flashMessages.has('errors.lnf_incorrectos_desc_i_eng'))
+                                                        <div class="errormessage">
+                                                            <p>El contenido no puede estar vacío</p>
+                                                        </div>
+                                                    @end
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Paleta de color</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_title" class="form-label">Titulo (Esp)</label>
+                                            <input class="form-control" type="text" id="color_title" name="color_title" value="{{brandbooks.color_title}}">
+                                            @if(flashMessages.has('errors.color_title'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_title_eng" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="color_title_eng" name="color_title_eng" value="{{brandbooks.color_title_eng}}">
+                                            @if(flashMessages.has('errors.color_title_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="color_txt">{{ brandbooks.color_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.color_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="color_txt_eng">{{ brandbooks.color_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.color_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="color_img_a" class="form-label">Imágenes</label>
+                                    <input class="form-control" type="file" id="color_img_a" name="color_img_a">
+                                    @if(flashMessages.has('errors.color_img_a'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="color_img_b" name="color_img_b">
+                                    @if(flashMessages.has('errors.color_img_b'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_usos_title" class="form-label">Titulo (Esp)</label>
+                                            <input class="form-control" type="text" id="color_usos_title" name="color_usos_title" value="{{brandbooks.color_usos_title}}">
+                                            @if(flashMessages.has('errors.color_usos_title'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_usos_title_eng" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="color_usos_title_eng" name="color_usos_title_eng" value="{{brandbooks.color_usos_title_eng}}">
+                                            @if(flashMessages.has('errors.color_usos_title_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_usos_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="color_usos_txt">{{ brandbooks.color_usos_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.color_usos_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_usos_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="color_usos_txt_eng">{{ brandbooks.color_usos_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.color_usos_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="color_usos_img_a" class="form-label">Imágenes</label>
+                                    <input class="form-control" type="file" id="color_usos_img_a" name="color_usos_img_a">
+                                    @if(flashMessages.has('errors.color_usos_img_a'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="color_usos_img_b" name="color_usos_img_b">
+                                    @if(flashMessages.has('errors.color_usos_img_b'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_simbolo_title" class="form-label">Titulo (Esp)</label>
+                                            <input class="form-control" type="text" id="color_simbolo_title" name="color_simbolo_title" value="{{brandbooks.color_simbolo_title}}">
+                                            @if(flashMessages.has('errors.color_simbolo_title'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_simbolo_title_eng" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="color_simbolo_title_eng" name="color_simbolo_title_eng" value="{{brandbooks.color_simbolo_title_eng}}">
+                                            @if(flashMessages.has('errors.color_simbolo_title_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_simbolo_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="color_simbolo_txt">{{ brandbooks.color_simbolo_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.color_simbolo_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_simbolo_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="color_simbolo_txt_eng">{{ brandbooks.color_simbolo_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.color_simbolo_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="color_simbolo_img" class="form-label">Imágenes</label>
+                                    <input class="form-control" type="file" id="color_simbolo_img" name="color_simbolo_img">
+                                    @if(flashMessages.has('errors.color_simbolo_img'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_positiven_title" class="form-label">Titulo (Esp)</label>
+                                            <input class="form-control" type="text" id="color_positiven_title" name="color_positiven_title" value="{{brandbooks.color_positiven_title}}">
+                                            @if(flashMessages.has('errors.color_positiven_title'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_positiven_title_eng" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="color_positiven_title_eng" name="color_positiven_title_eng" value="{{brandbooks.color_positiven_title_eng}}">
+                                            @if(flashMessages.has('errors.color_positiven_title_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_positiven_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="color_positiven_txt">{{ brandbooks.color_positiven_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.color_positiven_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_positiven_txt_eng" class="form-label">Contenido (Eng)</label>
+                                            <textarea name="color_positiven_txt_eng">{{ brandbooks.color_positiven_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.color_positiven_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="color_positiven_img_a" class="form-label">Imágenes</label>
+                                    <input class="form-control" type="file" id="color_positiven_img_a" name="color_positiven_img_a">
+                                    @if(flashMessages.has('errors.color_positiven_img_a'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="color_positiven_img_b" name="color_positiven_img_b">
+                                    @if(flashMessages.has('errors.color_positiven_img_b'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_app_title" class="form-label">Titulo (Esp)</label>
+                                            <input class="form-control" type="text" id="color_app_title" name="color_app_title" value="{{brandbooks.color_app_title}}">
+                                            @if(flashMessages.has('errors.color_app_title'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_app_title_eng" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="color_app_title_eng" name="color_app_title_eng" value="{{brandbooks.color_app_title_eng}}">
+                                            @if(flashMessages.has('errors.color_app_title_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_app_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="color_app_txt">{{ brandbooks.color_app_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.color_app_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="color_app_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="color_app_txt_eng">{{ brandbooks.color_app_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.color_app_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="color_app_img_a" class="form-label">Imágenes</label>
+                                    <input class="form-control" type="file" id="color_app_img_a" name="color_app_img_a">
+                                    @if(flashMessages.has('errors.color_app_img_a'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="color_app_img_b" name="color_app_img_b">
+                                    @if(flashMessages.has('errors.color_app_img_b'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="color_app_img_c" name="color_app_img_c">
+                                    @if(flashMessages.has('errors.color_app_img_c'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="color_app_img_d" name="color_app_img_d">
+                                    @if(flashMessages.has('errors.color_app_img_d'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="color_app_img_e" name="color_app_img_e">
+                                    @if(flashMessages.has('errors.color_app_img_e'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="color_app_img_f" name="color_app_img_f">
+                                    @if(flashMessages.has('errors.color_app_img_f'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Tipografía</h4>
+            <div class="card"  style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="type_title" class="form-label">Título (Esp)</label>
+                                            <input class="form-control" type="text" id="type_title" name="type_title" value="{{ brandbooks.type_title }}">
+                                            @if(flashMessages.has('errors.type_title'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="type_title_eng" class="form-label">Título (Eng)</label>
+                                            <input class="form-control" type="text" id="type_title_eng" name="type_title_eng" value="{{ brandbooks.type_title_eng }}">
+                                            @if(flashMessages.has('errors.type_title_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="type_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="type_txt">{{ brandbooks.type_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.type_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="type_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="type_txt_eng">{{ brandbooks.type_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.type_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="type_subtitle" class="form-label">Subtítulo (Esp)</label>
+                                            <input class="form-control" type="text" id="type_subtitle" name="type_subtitle" value="{{ brandbooks.type_subtitle }}">
+                                            @if(flashMessages.has('errors.type_subtitle'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="type_subtitle_eng" class="form-label">Subtitle (Eng)</label>
+                                            <input class="form-control" type="text" id="type_subtitle_eng" name="type_subtitle_eng" value="{{ brandbooks.type_subtitle_eng }}">
+                                            @if(flashMessages.has('errors.type_subtitle_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="type_img_a" class="form-label">Imágenes</label>
+                                    <input class="form-control" type="file" id="type_img_a" name="type_img_a">
+                                    @if(flashMessages.has('errors.type_img_a'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="type_img_b" name="type_img_b">
+                                    @if(flashMessages.has('errors.type_img_b'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="type_img_c" name="type_img_c">
+                                    @if(flashMessages.has('errors.type_img_c'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Recursos gráficos</h4>
+            <div class="card"  style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="resources_title" class="form-label">Título (Esp)</label>
+                                            <input class="form-control" type="text" id="resources_title" name="resources_title" value="{{ brandbooks.resources_title }}">
+                                            @if(flashMessages.has('errors.resources_title'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="resources_title_eng" class="form-label">Título (Eng)</label>
+                                            <input class="form-control" type="text" id="resources_title_eng" name="resources_title_eng" value="{{ brandbooks.resources_title_eng }}">
+                                            @if(flashMessages.has('errors.resources_title_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="resources_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="resources_txt">{{ brandbooks.resources_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.resources_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="resources_txt_eng" class="form-label">Contenido (Eng)</label>
+                                            <textarea name="resources_txt_eng">{{ brandbooks.resources_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.resources_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="resources_img_a" class="form-label">Imágenes</label>
+                                    <input class="form-control" type="file" id="resources_img_a" name="resources_img_a">
+                                    @if(flashMessages.has('errors.resources_img_a'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="resources_img_b" name="resources_img_b">
+                                    @if(flashMessages.has('errors.resources_img_b'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="resources_img_c" name="resources_img_c">
+                                    @if(flashMessages.has('errors.resources_img_c'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="resources_img_d" name="resources_img_d">
+                                    @if(flashMessages.has('errors.resources_img_d'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="resources_img_e" name="resources_img_e">
+                                    @if(flashMessages.has('errors.resources_img_e'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="resources_img_f" name="resources_img_f">
+                                    @if(flashMessages.has('errors.resources_img_f'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="icons_title" class="form-label">Subtítulo (Esp)</label>
+                                            <input class="form-control" type="text" id="icons_title" name="icons_title" value="{{ brandbooks.icons_title }}">
+                                            @if(flashMessages.has('errors.icons_title'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="icons_title_eng" class="form-label">Subtitle (Esp)</label>
+                                            <input class="form-control" type="text" id="icons_title_eng" name="icons_title_eng" value="{{ brandbooks.icons_title_eng }}">
+                                            @if(flashMessages.has('errors.icons_title_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="icons_txt" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="icons_txt">{{ brandbooks.icons_txt }}</textarea>
+        
+                                            @if(flashMessages.has('errors.icons_txt'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="icons_txt_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="icons_txt_eng">{{ brandbooks.icons_txt_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.icons_txt_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="icons_img_a" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="icons_img_a" name="icons_img_a">
+                                    @if(flashMessages.has('errors.icons_img_a'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen</p>
+                                        </div>
+                                    @end
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-12">
+                <div>
+                    <div class="mb-3">
+                        <input class="form-control" type="submit">
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+        </form>
+    </div>
+    <!-- End Form -->
+
+</div>
+
+
+<!-- container-fluid -->
+@endsection

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title> Login | ALTAIR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="rOH7YXoWzeW25HoQwdcPP0GRnXXjQZ89MoJJj2Z7">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+
+    <div class="auth-page">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-xxl-4 col-lg-4 col-md-4">&nbsp;</div>
+                <div class="col-xxl-4 col-lg-4 col-md-4">
+                    <div class="auth-full-page-content d-flex p-sm-5 p-4">
+                        <div class="w-100">
+                            <div class="d-flex flex-column h-50">
+                                <div class="mb-4 mb-md-5 text-center">
+                                    <a href="index.php" class="d-block auth-logo">
+                                        <img src="https://altairic.com/imgs/logo_header.svg" alt="" height="150">
+                                    </a>
+                                </div>
+                                <div class="auth-content my-auto">
+                                    <div class="text-center">
+                                        <p class="text-muted mt-2 visibility-hidden">Administrador de contenidos.</p>
+                                    </div>
+                                        <form action="{{ route('auth.login') }}" method="post">
+                                            {{ csrfField()}}
+
+                                            @if (flashMessages.has('form'))
+                                                <div role="alert">
+                                                {{ inspect(flashMessages.get('form'))}}
+                                                </div>
+                                            @endif
+
+                                            @if(flashMessages.has('success'))
+                                                <div class="successmessage">
+                                                        <p>{{ flashMessages.get('success') }}</p>
+                                                </div>
+                                            @end
+
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Nombre de usuario o email</label>
+                                            <input type="text" name="uid" class="form-control"/>
+
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-start">
+                                                <div class="flex-grow-1">
+                                                    <label class="form-label">Password</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-group auth-pass-inputgroup">
+                                                <input type="password" name="password" class="form-control" />
+                                                <button class="btn btn-light ms-0" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Log In</button>
+                                            <input type="hidden" name="login" value="1" />
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="login-text">
+                                    <p>Para obtener acceso contáctese con su administrador.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end auth full page content -->
+                </div>
+                <div class="col-xxl-4 col-lg-4 col-md-4">&nbsp;</div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container fluid -->
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/libs/metismenu/metismenu.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/node-waves/node-waves.min.js"></script>
+    <script src="assets/libs/feather-icons/feather-icons.min.js"></script>
+    <!-- pace js -->
+    <script src="assets/libs/pace-js/pace-js.min.js"></script>
+    <!-- password addon init -->
+    <script src="assets/js/pages/pass-addon.init.js"></script>
+</body>
+
+</html>

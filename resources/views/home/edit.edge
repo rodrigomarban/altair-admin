@@ -1,0 +1,536 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-24">Home</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                        <li class="breadcrumb-item active">Home</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <!-- Form -->
+    <div class="row">
+        <form class="form-edit" action="{{route('homes.update', [home.id])}}?_method=PATCH" method="POST" enctype="multipart/form-data">
+            {{ csrfField()}}
+
+        @if(flashMessages.has('success'))
+            <div class="successmessage">
+                <p>{{ flashMessages.get('success') }}</p>
+            </div>
+        @end
+        <div class="col-12">
+            <h4 class="mb-sm-0 font-size-18">Hero</h4>
+            <div class="card"  style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="title" class="form-label">Título (Esp)</label>
+                                            <input class="form-control" type="text" id="title" name="title" value="{{ home.title }}">
+                                            @if(flashMessages.has('errors.title'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="title_eng" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="title_eng" name="title_eng" value="{{ home.title_eng }}">
+                                            @if(flashMessages.has('errors.title_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="content" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="content">{{ home.content }}</textarea>
+        
+                                            @if(flashMessages.has('errors.content'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="content_eng" class="form-label">Contenido (Eng) </label>
+                                            <textarea name="content_eng">{{ home.content_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.content_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="hero" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="hero" name="hero">
+                                    @if(flashMessages.has('errors.hero'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen o es muy grande, porfavor intenta con una imagen menor a 2mb</p>
+                                        </div>
+                                    @end
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Intermediario</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="intro_heading" class="form-label">Título (Esp)</label>
+                                            <input class="form-control" type="text" id="intro_heading" name="intro_heading" value="{{ home.intro_heading }}">
+                                            @if(flashMessages.has('errors.intro_heading'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="intro_heading" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="intro_heading_eng" name="intro_heading_eng" value="{{ home.intro_heading_eng }}">
+                                            @if(flashMessages.has('errors.intro_heading_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="intro_content" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="intro_content">{{ home.intro_content }}</textarea>
+        
+                                            @if(flashMessages.has('errors.intro_content'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="intro_content_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="intro_content_eng">{{ home.intro_content_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.intro_content_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="intro_image" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="intro_image" name="intro_image">
+                                    @if(flashMessages.has('errors.intro_image'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen o es muy grande, porfavor intenta con una imagen menor a 2mb</p>
+                                        </div>
+                                    @end
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Valores</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="mision" class="form-label">Misión (Esp)</label>
+                                            <textarea name="mision">{{ home.mision }}</textarea>
+                                            @if(flashMessages.has('errors.mision'))
+                                                <div class="errormessage">
+                                                    <p>La Misión no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="mision_eng" class="form-label">Mision (Eng)</label>
+                                            <textarea name="mision_eng">{{ home.mision_eng }}</textarea>
+                                            @if(flashMessages.has('errors.mision_eng'))
+                                                <div class="errormessage">
+                                                    <p>La Misión no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="vision" class="form-label">Visión (Esp)</label>
+                                            <textarea name="vision">{{ home.vision }}</textarea>
+        
+                                            @if(flashMessages.has('errors.vision'))
+                                                <div class="errormessage">
+                                                    <p>La Visión no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="vision_eng" class="form-label">Vision (Eng)</label>
+                                            <textarea name="vision_eng">{{ home.vision_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.vision_eng'))
+                                                <div class="errormessage">
+                                                    <p>La Visión no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="values" class="form-label">Valores</label>
+                                            <input class="form-control" type="text" id="values" name="values" value="{{ home.values }}">
+                                            <p>Pon los valores con solo un espacio.</p>
+                                            @if(flashMessages.has('errors.values'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="values_eng" class="form-label">Values (Eng)</label>
+                                            <input class="form-control" type="text" id="values_eng" name="values_eng" value="{{ home.values_eng }}">
+                                            <p>Pon los valores con solo un espacio.</p>
+                                            @if(flashMessages.has('errors.values_eng'))
+                                                <div class="errormessage">
+                                                    <p>Los valores no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Estrategias</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="mb-3">
+                                    <label for="estrategias_img" class="estrategias_img">Imagen</label>
+                                    <input class="form-control" type="file" id="estrategias_img" name="estrategias_img">
+                                    @if(flashMessages.has('errors.estrategias_img'))
+                                        <div class="errormessage">
+                                            <p>La Misión no puede estar vacío</p>
+                                        </div>
+                                    @end
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="estrategias_heading" class="form-label">Título (Esp)</label>
+                                            <input class="form-control" type="text" id="estrategias_heading" name="estrategias_heading" value="{{ home.estrategias_heading }}">
+                                            @if(flashMessages.has('errors.estrategias_heading'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="estrategias_heading_eng" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="estrategias_heading_eng" name="estrategias_heading_eng" value="{{ home.estrategias_heading_eng }}">
+                                            @if(flashMessages.has('errors.estrategias_heading_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="estrategias_subheading" class="form-label">Subtítulo</label>
+                                            <input class="form-control" type="text" id="estrategias_subheading" name="estrategias_subheading" value="{{ home.estrategias_subheading }}">
+                                            @if(flashMessages.has('errors.estrategias_subheading'))
+                                                <div class="errormessage">
+                                                    <p>El subtítulo no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="estrategias_subheading_eng" class="form-label">Subtitle (Eng)</label>
+                                            <input class="form-control" type="text" id="estrategias_subheading_eng" name="estrategias_subheading_eng" value="{{ home.estrategias_subheading_eng }}">
+                                            @if(flashMessages.has('errors.estrategias_subheading_eng'))
+                                                <div class="errormessage">
+                                                    <p>El subtítulo no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="estrategias_content" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="estrategias_content">{{ home.estrategias_content }}</textarea>
+                                            @if(flashMessages.has('errors.estrategias_content'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="estrategias_content_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="estrategias_content_eng">{{ home.estrategias_content_eng }}</textarea>
+                                            @if(flashMessages.has('errors.estrategias_content_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacíos</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Cita</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="quote_content" class="form-label">Cita (Eng)</label>
+                                            <textarea name="quote_content">{{ home.quote_content }}</textarea>
+                                            @if(flashMessages.has('errors.quote_content'))
+                                                <div class="errormessage">
+                                                    <p>La cita no puede estar vacía</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="quote_content_eng" class="form-label">Quote (Eng)</label>
+                                            <textarea name="quote_content_eng">{{ home.quote_content_eng }}</textarea>
+                                            @if(flashMessages.has('errors.quote_content_eng'))
+                                                <div class="errormessage">
+                                                    <p>La cita no puede estar vacía</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="quote_author" class="form-label">Autor (Esp)</label>
+                                            <input class="form-control" type="text" id="quote_author" name="quote_author" value="{{ home.quote_author }}">
+                                            @if(flashMessages.has('errors.estrategias_heading'))
+                                                <div class="errormessage">
+                                                    <p>El autor no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="quote_author_eng" class="form-label">Author (Eng)</label>
+                                            <input class="form-control" type="text" id="quote_author_eng" name="quote_author_eng" value="{{ home.quote_author_eng }}">
+                                            @if(flashMessages.has('errors.estrategias_heading_eng'))
+                                                <div class="errormessage">
+                                                    <p>El autor no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Currency</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="mb-3">
+                                    <label for="hero_2" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="hero_2" name="hero_2">
+                                    @if(flashMessages.has('errors.hero_2'))
+                                        <div class="errormessage">
+                                            <p>La imagen no puede estar vacía</p>
+                                        </div>
+                                    @end
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Contacto</h4>
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="contact_heading" class="form-label">Título (Esp)</label>
+                                            <input class="form-control" type="text" id="contact_heading" name="contact_heading" value="{{ home.contact_heading }}">
+                                            @if(flashMessages.has('errors.contact_heading'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="contact_heading_eng" class="form-label">Title (Eng)</label>
+                                            <input class="form-control" type="text" id="contact_heading_eng" name="contact_heading_eng" value="{{ home.contact_heading_eng }}">
+                                            @if(flashMessages.has('errors.contact_heading'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="contact_text" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="contact_text">{{ home.contact_text }}</textarea>
+        
+                                            @if(flashMessages.has('errors.contact_text'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="contact_text_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="contact_text_eng">{{ home.contact_text_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.contact_text_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contact_img" class="form-label">Imagen</label>
+                                    <input class="form-control" type="file" id="contact_img" name="contact_img">
+                                    @if(flashMessages.has('errors.contact_img'))
+                                        <div class="errormessage">
+                                            <p>Necesita una imagen o es muy grande, porfavor intenta con una imagen menor a 2mb</p>
+                                        </div>
+                                    @end
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div>
+                    <div class="mb-3">
+                        <input class="form-control" type="submit">
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+        </form>
+    </div>
+    <!-- End Form -->
+
+</div>
+
+
+<!-- container-fluid -->
+@endsection

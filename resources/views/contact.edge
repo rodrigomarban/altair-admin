@@ -1,0 +1,12 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    @each(contact in contacts)
+    <p>{{ contact.title }}</p>
+    @endeach
+</div>
+
+
+<!-- container-fluid -->
+@endsection

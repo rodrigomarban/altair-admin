@@ -1,0 +1,124 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-24">Footer</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">Footer</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+
+
+       
+    </div>
+    <!-- end page title -->
+    <!-- Form -->
+    <div class="row">
+        <form class="form-edit" action="{{route('footer.update', [footers.id])}}?_method=PATCH" method="POST" enctype="multipart/form-data">
+            {{ csrfField()}}
+
+        @if(flashMessages.has('success'))
+            <div class="successmessage">
+                <p>{{ flashMessages.get('success') }}</p>
+            </div>
+        @end
+        <div class="col-12">
+            <div class="card"  style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="content" class="form-label">Leyenda legal (Esp)</label>
+                                        <textarea name="content">{{footers.content}}</textarea>
+    
+                                        @if(flashMessages.has('errors.content'))
+                                            <div class="errormessage">
+                                                <p>El contenido no puede estar vacío</p>
+                                            </div>
+                                        @end
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="content_eng" class="form-label">Legal Text (Eng)</label>
+                                        <textarea name="content_eng">{{footers.content_eng}}</textarea>
+    
+                                        @if(flashMessages.has('errors.content_eng'))
+                                            <div class="errormessage">
+                                                <p>El contenido no puede estar vacío</p>
+                                            </div>
+                                        @end
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-sm-0 font-size-18">Términos y condiciones</h4>
+            <div class="card" style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="privacy" class="form-label">PDF (Esp)</label>
+                                        <input class="form-control" type="file" id="privacy" name="privacy">
+                                        @if(flashMessages.has('errors.privacy'))
+                                            <div class="errormessage">
+                                                <p>Necesita una imagen</p>
+                                            </div>
+                                        @end
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="privacy_eng" class="form-label">PDF (Eng)</label>
+                                        <input class="form-control" type="file" id="privacy_eng" name="privacy_eng">
+                                        @if(flashMessages.has('errors.privacy_eng'))
+                                            <div class="errormessage">
+                                                <p>Necesita una imagen</p>
+                                            </div>
+                                        @end
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <div>
+                    <div class="mb-3">
+                        <input class="form-control" type="submit">
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+        </form>
+    </div>
+    <!-- End Form -->
+
+</div>
+
+
+<!-- container-fluid -->
+@endsection

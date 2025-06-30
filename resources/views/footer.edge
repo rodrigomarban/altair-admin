@@ -1,0 +1,12 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    @each(footer in footers)
+    <p>{{ footer.content }}</p>
+    @endeach
+</div>
+
+
+<!-- container-fluid -->
+@endsection

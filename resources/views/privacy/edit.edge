@@ -1,0 +1,143 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-24">Aviso de Privacidad</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">Aviso de Privacidad</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+
+
+       
+    </div>
+    <!-- end page title -->
+    <!-- Form -->
+    <div class="row">
+        <form class="form-edit" action="{{route('privacy.update', [privacies.id])}}?_method=PATCH" method="POST" enctype="multipart/form-data">
+            {{ csrfField()}}
+
+        @if(flashMessages.has('success'))
+            <div class="successmessage">
+                <p>{{ flashMessages.get('success') }}</p>
+            </div>
+        @end
+        <div class="col-12">
+            <div class="card"  style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="title" class="form-label">Título (eng)</label>
+                                            <input class="form-control" type="text" id="title" name="title" value="{{privacies.title }}">
+                                            @if(flashMessages.has('errors.title'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="title_eng" class="form-label">Title (Esp)</label>
+                                            <input class="form-control" type="text" id="title_eng" name="title_eng" value="{{privacies.title_eng }}">
+                                            @if(flashMessages.has('errors.title_eng'))
+                                                <div class="errormessage">
+                                                    <p>El título no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="content" class="form-label">Contenido (Esp)</label>
+                                            <textarea name="content">{{privacies.content }}</textarea>
+        
+                                            @if(flashMessages.has('errors.content'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="content_eng" class="form-label">Content (Eng)</label>
+                                            <textarea name="content_eng">{{privacies.content_eng }}</textarea>
+        
+                                            @if(flashMessages.has('errors.content_eng'))
+                                                <div class="errormessage">
+                                                    <p>El contenido no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="date" class="form-label">Fecha de actualización</label>
+                                            <input class="form-control" type="text" id="date" name="date" value="{{privacies.date }}">
+                                            @if(flashMessages.has('errors.date'))
+                                                <div class="errormessage">
+                                                    <p>La fecha no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="date_eng" class="form-label">Update date</label>
+                                            <input class="form-control" type="text" id="date_eng" name="date_eng" value="{{privacies.date_eng }}">
+                                            @if(flashMessages.has('errors.date_eng'))
+                                                <div class="errormessage">
+                                                    <p>La fecha no puede estar vacío</p>
+                                                </div>
+                                            @end
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <div>
+                    <div class="mb-3">
+                        <input class="form-control" type="submit">
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+        </form>
+    </div>
+    <!-- End Form -->
+
+</div>
+
+
+<!-- container-fluid -->
+@endsection

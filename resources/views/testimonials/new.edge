@@ -1,0 +1,83 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-24">Testimonios</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="/testimonial">Testimonios</a></li>
+                        <li class="breadcrumb-item active">Nuevo</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+
+       
+    </div>
+    <!-- end page title -->
+    <!-- Form -->
+    <div class="row">
+        <form class="form-edit" action="{{route('testimonial.add')}}" method="POST" enctype="multipart/form-data">
+            {{ csrfField()}}
+
+        @if(flashMessages.has('success'))
+            <div class="successmessage">
+                <p>{{ flashMessages.get('success') }}</p>
+            </div>
+        @end
+        <div class="col-12">
+            <div class="card"  style="margin-bottom:60px">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <div class="mb-3">
+                                    <label for="author" class="form-label">Nombre</label>
+                                    <input class="form-control" type="text" id="author" name="author">
+                                    @if(flashMessages.has('errors.author'))
+                                        <div class="errormessage">
+                                            <p>No puede estar vacío</p>
+                                        </div>
+                                    @end
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="quote" class="form-label">Cita</label>
+                                    <textarea name="quote"></textarea>
+
+                                    @if(flashMessages.has('errors.quote'))
+                                        <div class="errormessage">
+                                            <p>No puede estar vacío</p>
+                                        </div>
+                                    @end
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div>
+                    <div class="mb-3">
+                        <input class="form-control" type="submit">
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+        </form>
+    </div>
+    <!-- End Form -->
+
+</div>
+
+
+<!-- container-fluid -->
+@endsection

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Administrador de contenido para Altair</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="Administrador de contenido para Altair" name="description" />
+  <meta content="Themesbrand" name="author" />
+  <!-- App favicon -->
+  <link rel="shortcut icon" href="/assets/images/favicon.ico">
+  <!-- plugin css -->
+  <link href="/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+  <!-- preloader css -->
+  <link rel="stylesheet" href="/assets/css/preloader.min.css" type="text/css" />
+  <!-- Bootstrap Css -->
+  <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+  <!-- Icons Css -->
+  <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+  <!-- App Css-->
+  <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+  {{-- <link href="/style.css" rel="stylesheet"> --}}
+  <script
+    src="https://cdn.tiny.cloud/1/uootp9r8drdsgk877qvayltxluu6bwg8kaibi839gv4rvvn2/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"
+  ></script>
+
+    <script>
+      tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+        toolbar: 'insertfile a11ycheck undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        autosave_ask_before_unload: true,
+        powerpaste_allow_local_images: true,
+        spellchecker_dialog: true,
+      });
+    </script>
+
+</head>
+<body>
+
+  <!-- Begin page -->
+  <div id="layout-wrapper">
+  <header id="page-topbar">
+    @include('partials/header')
+  </header>
+
+  <!-- ========== Left Sidebar Start ========== -->
+  <div class="vertical-menu">
+
+      <div data-simplebar class="h-100">
+
+          <!--- Sidemenu -->
+          <div id="sidebar-menu">
+              <!-- Left Menu Start -->
+              @include('partials/sidebar')
+          </div>
+          <!-- Sidebar -->
+      </div>
+  </div>
+  <!-- Left Sidebar End -->
+
+  <div class="main-content">
+    <div class="page-content">
+      @!section('body')
+    </div>
+
+    <footer class="footer">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-sm-6">
+                  <script>
+                      document.write(new Date().getFullYear())
+                  </script>
+              </div>
+          </div>
+      </div>
+    </footer>
+  </div>
+
+      <!-- JAVASCRIPT -->
+      <script src="/assets/libs/jquery/jquery.min.js"></script>
+      <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
+      <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+      <script src="/assets/libs/node-waves/waves.min.js"></script>
+      <script src="/assets/libs/feather-icons/feather.min.js"></script>
+  
+      <!-- apexcharts -->
+      <script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
+  
+      <!-- Plugins js-->
+      <script src="/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+      <script src="/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+      <!-- dashboard init -->
+      <script src="/assets/js/pages/dashboard.init.js"></script>
+  
+      <script src="/assets/js/app.js"></script>
+
+
+
+</body>
+
+
+</html>

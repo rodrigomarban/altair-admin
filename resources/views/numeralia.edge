@@ -1,0 +1,12 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    @each(cifra in cifras)
+    <p>{{ cifra.content }}</p>
+    @endeach
+</div>
+
+
+<!-- container-fluid -->
+@endsection

@@ -1,0 +1,13 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    @each(estrategia in estrategias)
+    <p>{{ estrategia.title }}</p>
+    <p>{{ estrategia.content }}</p>
+    @endeach
+</div>
+
+
+<!-- container-fluid -->
+@endsection

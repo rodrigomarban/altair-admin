@@ -1,0 +1,71 @@
+@layout('layouts/main')
+
+@section('body')
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-24">Testimonios</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">Testimonios</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-end">
+                    <a href="testimonial/new">
+                        <button type="button" class="btn btn-primary waves-effect waves-light">Crear nuevo</button>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Testimonio</th>
+                                    <th>Autor</th>
+                                    <th>Editar</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @each(testimonial in testimonials)
+                                <tr>
+                                    <th scope="row">{{ testimonial.id }}</th>
+                                    <td>{{{ testimonial.quote }}}</td>
+                                    <td>{{ testimonial.author }}</td>
+                                    <td class="edit-content-table">
+                                        <a href="{{route('testimonial_edit',[testimonial.id])}}">
+                                            <button type="button" class="btn btn-outline-primary waves-effect waves-light">Editar</button>
+                                        </a>
+                                    </td>
+                                    <td class="edit-content-table">
+                                        <form action="{{route('testimonial.delete',[testimonial.id])}}?_method=DELETE" method="POST">{{ csrfField()}}
+                                            <button type="submit" class="btn btn-outline-danger waves-effect waves-light">Eliminar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end card body -->
+            </div>
+            <!-- end card -->
+        </div>
+    </div>
+</div>
+
+
+<!-- container-fluid -->
+@endsection
