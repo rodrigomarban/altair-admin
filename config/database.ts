@@ -4,35 +4,30 @@ import Env from '@ioc:Adonis/Core/Env'
 import type { DatabaseConfig } from '@ioc:Adonis/Lucid/Database'
 
 const databaseConfig: DatabaseConfig = {
-  /*
-  |--------------------------------------------------------------------------
-  | Primary connection name
-  |--------------------------------------------------------------------------
-  */
-  connection: Env.get('DB_CONNECTION', 'pg'),  // Pon 'pg' como fallback
+  connection: Env.get('DB_CONNECTION', 'pg'),
 
   connections: {
-    /*
-    |--------------------------------------------------------------------------
-    | PostgreSQL
-    |--------------------------------------------------------------------------
-    */
-    pg: {
-      client: 'pg',
-      connection: {
-        host: Env.get('PG_HOST'),
-        port: Env.get('PG_PORT'),
-        user: Env.get('PG_USER'),
-        password: Env.get('PG_PASSWORD', ''),
-        database: Env.get('PG_DB_NAME'),
-      },
-      migrations: {
-        naturalSort: true,
-      },
-      healthCheck: false,
-      debug: false,
-    },
-
+    pg: Env.get('DATABASE_URL')
+      ? {
+          client: 'pg',
+          connection: Env.get('DATABASE_URL'),
+          migrations: { naturalSort: true },
+          healthCheck: false,
+          debug: false,
+        }
+      : {
+          client: 'pg',
+          connection: {
+            host: Env.get('PG_HOST'),
+            port: Env.get('PG_PORT'),
+            user: Env.get('PG_USER'),
+            password: Env.get('PG_PASSWORD', ''),
+            database: Env.get('PG_DB_NAME'),
+          },
+          migrations: { naturalSort: true },
+          healthCheck: false,
+          debug: false,
+        },
     /*
     |--------------------------------------------------------------------------
     | MySQL (opcional)
